@@ -1,0 +1,140 @@
+login as: ec2-user
+Authenticating with public key "imported-openssh-key"
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-2-10-229 ~]$ mysql --version
+-bash: mysql: command not found
+[ec2-user@ip-10-2-10-229 ~]$ auso yum install mariadb
+-bash: auso: command not found
+[ec2-user@ip-10-2-10-229 ~]$ sudo yum install mariadb
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                               | 3.7 kB     00:00
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.68-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package        Arch          Version                   Repository         Size
+================================================================================
+Installing:
+ mariadb        x86_64        1:5.5.68-1.amzn2          amzn2-core        8.8 M
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total download size: 8.8 M
+Installed size: 49 M
+Is this ok [y/d/N]: y
+Downloading packages:
+mariadb-5.5.68-1.amzn2.x86_64.rpm                          | 8.8 MB   00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:mariadb-5.5.68-1.amzn2.x86_64                              1/1
+  Verifying  : 1:mariadb-5.5.68-1.amzn2.x86_64                              1/1
+
+Installed:
+  mariadb.x86_64 1:5.5.68-1.amzn2
+
+Complete!
+[ec2-user@ip-10-2-10-229 ~]$ mysql --version
+mysql  Ver 15.1 Distrib 5.5.68-MariaDB, for Linux (x86_64) using readline 5.1
+[ec2-user@ip-10-2-10-229 ~]$ mysql -h secondary.chpxcisyr6mh.us-east-2.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 34
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.01 sec)
+
+MySQL [(none)]> desribe udacity;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desribe udacity' at line 1
+MySQL [(none)]> use udacity;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> insert into udacityguests (
+    -> value ('34', 'Jackson');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('34', 'Jackson')' at line 2
+MySQL [udacity]> select * from udacityguest
+    -> exit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'exit' at line 2
+MySQL [udacity]> select * from udacityguest;
+ERROR 1146 (42S02): Table 'udacity.udacityguest' doesn't exist
+MySQL [udacity]> select * from udacityguests;
++----------+----------+
+| PersonID | Lastname |
++----------+----------+
+|        1 | Parker   |
+|       21 | Reggie   |
++----------+----------+
+2 rows in set (0.00 sec)
+
+MySQL [udacity]> insert into udacityguests value ('23', 'Jackson');
+ERROR 1290 (HY000): The MySQL server is running with the --read-only option so it cannot execute this statement
+MySQL [udacity]> Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-2-10-229 ~]$
+[ec2-user@ip-10-2-10-229 ~]$
+[ec2-user@ip-10-2-10-229 ~]$ mysql -h secondary.chpxcisyr6mh.us-east-2.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> select * from udacityguests;
++----------+----------+
+| PersonID | Lastname |
++----------+----------+
+|        1 | Parker   |
+|       21 | Reggie   |
++----------+----------+
+2 rows in set (0.00 sec)
+
+MySQL [udacity]> insert into udacityguests value ('23', 'Jackson');
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> select * from udacityguests;
++----------+----------+
+| PersonID | Lastname |
++----------+----------+
+|        1 | Parker   |
+|       21 | Reggie   |
+|       23 | Jackson  |
++----------+----------+
+3 rows in set (0.01 sec)
+
+MySQL [udacity]>

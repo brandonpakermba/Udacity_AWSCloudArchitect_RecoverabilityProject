@@ -1,0 +1,341 @@
+login as: ec2-user
+Authenticating with public key "imported-openssh-key"
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+[ec2-user@ip-10-1-10-104 ~]$ yum install mariadb
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+You need to be root to perform this command.
+[ec2-user@ip-10-1-10-104 ~]$ sudo yum install mariadb
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+amzn2-core                                                                                                                                                          | 3.7 kB  00:00:00
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.68-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+===========================================================================================================================================================================================
+ Package                                   Arch                                     Version                                             Repository                                    Size
+===========================================================================================================================================================================================
+Installing:
+ mariadb                                   x86_64                                   1:5.5.68-1.amzn2                                    amzn2-core                                   8.8 M
+
+Transaction Summary
+===========================================================================================================================================================================================
+Install  1 Package
+
+Total download size: 8.8 M
+Installed size: 49 M
+Is this ok [y/d/N]: y
+Downloading packages:
+mariadb-5.5.68-1.amzn2.x86_64.rpm                                                                                                                                   | 8.8 MB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                                                         1/1
+  Verifying  : 1:mariadb-5.5.68-1.amzn2.x86_64                                                                                                                                         1/1
+
+Installed:
+  mariadb.x86_64 1:5.5.68-1.amzn2
+
+Complete!
+[ec2-user@ip-10-1-10-104 ~]$ mysql --version
+mysql  Ver 15.1 Distrib 5.5.68-MariaDB, for Linux (x86_64) using readline 5.1
+[ec2-user@ip-10-1-10-104 ~]$ mysql -h udacity.cndggltj9q5x.us-east-1.rds.amazonaws.com -P 3306 -u administrator -p Thedragonsfire0!
+Enter password:
+ERROR 1045 (28000): Access denied for user 'administrator'@'10.1.10.104' (using password: YES)
+[ec2-user@ip-10-1-10-104 ~]$ mysql -h udacity.cndggltj9q5x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 39
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> CREATE TABLE udacity_tbl
+    -> name
+    -> email
+    -> date
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name
+email
+date
+)' at line 2
+MySQL [(none)]>
+MySQL [(none)]>
+MySQL [(none)]> CREATE TABLE Persons (
+    -> PersonID,
+    -> Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-1-10-104 ~]$ mysql -h udacity.cndggltj9q5x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 41
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> CREATE TABLE Persons (
+    -> PersonID int,
+    -> LastName varchar(255),
+    -> FirstName varchar(255),
+    -> Address varchar(255),
+    -> City varchar(255)
+    -> );
+ERROR 1046 (3D000): No database selected
+MySQL [(none)]> CREATE DATABASE udacity;
+Query OK, 1 row affected (0.02 sec)
+
+MySQL [(none)]> CREATE TABLE Persons (
+    -> PersonID int,
+    -> LastName varchar(255),
+    -> FirstName varchar(255),
+    -> Address varchar(255),
+    -> City varchar(255)
+    -> );
+ERROR 1046 (3D000): No database selected
+MySQL [(none)]> show databases
+    ->
+    -> SHOW DATABASES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SHOW DATABASES' at line 3
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
+
+MySQL [(none)]> use udacity;
+Database changed
+MySQL [udacity]> create table Persons (
+    -> PersonID int,
+    -> LastName varchar(255),
+    -> FirstName varchar(255),
+    -> Address varchar(255),
+    -> City varchar(255)
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+MySQL [udacity]> describe udacity
+    ->
+    -> describe persons
+    -> Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-1-10-104 ~]$ mysql -h udacity.cndggltj9q5x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 43
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
+
+MySQL [(none)]> describe udacity
+    -> persons
+    ->
+    ->
+    ->
+    -> escape
+    -> Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-1-10-104 ~]$ mysql -h udacity.cndggltj9q5x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'admin'@'10.1.10.104' (using password: YES)
+[ec2-user@ip-10-1-10-104 ~]$ mysql -h udacity.cndggltj9q5x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 46
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> describe persons;
+ERROR 1146 (42S02): Table 'udacity.persons' doesn't exist
+MySQL [udacity]> show tables
+    ->
+    ->
+    ->
+    ->
+    -> Ctrl-C -- exit!
+Aborted
+[ec2-user@ip-10-1-10-104 ~]$ mysql -h udacity.cndggltj9q5x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 47
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> show tables
+    -> quit
+    -> exit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'quit
+exit' at line 2
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
+
+MySQL [(none)]> use udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> show tables
+    -> exit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'exit' at line 2
+MySQL [udacity]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
+
+MySQL [udacity]> use udacity
+Database changed
+MySQL [udacity]>
+MySQL [udacity]> create table myguest (
+    -> firtname varchar(30) not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+MySQL [udacity]> create table myguest (
+    -> firstname varchar(30);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+MySQL [udacity]> create table myguests (
+    -> firstname;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+MySQL [udacity]> create table myguests (
+    -> firstname,
+    -> lastname,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+lastname,
+)' at line 2
+MySQL [udacity]> create table myguests ( firstname, lastname, )
+    -> exit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ', lastname, )
+exit' at line 1
+MySQL [udacity]> create table udacityguests (
+    -> PersonID int,
+    -> Lastname varchar(255)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+MySQL [udacity]> Insert Into udacitymyguests
+    -> values (1, Parker)
+    -> values (2, Reggie)
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values (2, Reggie)' at line 3
+MySQL [udacity]> Insert Into udacitymyguests
+    -> values (1, Parker),
+    -> values (2, Reggie)
+    -> )=;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'values (2, Reggie)
+)=' at line 3
+MySQL [udacity]> Insert Into udacityguests
+    -> values ('1', 'Parker');
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> Insert Into udacityguests values ('21', 'Reggie');
+Query OK, 1 row affected (0.01 sec)
+
+MySQL [udacity]> describe udacityguests;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| PersonID | int          | YES  |     | NULL    |       |
+| Lastname | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+MySQL [udacity]> select * from udacityguests;
++----------+----------+
+| PersonID | Lastname |
++----------+----------+
+|        1 | Parker   |
+|       21 | Reggie   |
++----------+----------+
+2 rows in set (0.00 sec)
+
+MySQL [udacity]> exit;
+Bye
+[ec2-user@ip-10-1-10-104 ~]$ mysql -h udacity.cndggltj9q5x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 55
+Server version: 8.0.23 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> show tables
+    -> exit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'exit' at line 2
+MySQL [(none)]> describe tables;
+ERROR 1046 (3D000): No database selected
+MySQL [(none)]> describe database;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database' at line 1
+MySQL [(none)]> show databasel
+    -> exit;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databasel
+exit' at line 1
+MySQL [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
